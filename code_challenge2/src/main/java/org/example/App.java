@@ -10,6 +10,8 @@ public class App
         Object[] array1 = {1, 2, new Object[]{3, 4, new Object[]{5, 6, new Object[]{7, 8, new Object[]{9, 10}}}} };
 
         Object[] result = transformArray(array1);
+
+        System.out.println("Arreglo final");
         System.out.print("[");
         for (int i = 0; i < result.length; i++){
 

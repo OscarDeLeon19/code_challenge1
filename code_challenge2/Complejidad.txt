@@ -1,0 +1,1 @@
+My algorithm has a complexity of O(n) because it uses only one loop and recursion.
