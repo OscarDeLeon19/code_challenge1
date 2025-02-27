@@ -12,9 +12,9 @@ public class AppTest {
     @Test
     public void addStudentAddedPrevoiusly() {
 
+        // Create department and map for test
         Department d = new Department();
         HashMap<Student, Integer> students = new HashMap<>();
-
 
         Student s1 = new Student("John", "Doe");
         Student s2 = new Student("Oscar", "de Leon");
@@ -26,22 +26,21 @@ public class AppTest {
 
         d.setStudents(students);
 
+        // Create new student for test
         Student newStudent = new Student("John", "Doe");
 
         // Call method
-
         d.addStudent(newStudent, 100);
 
         // Asert
-
         Assertions.assertEquals(3, students.size());
     }
 
     @Test
     public void addStudentSuccess() {
+        // Create department and map for test
         Department d = new Department();
         HashMap<Student, Integer> students = new HashMap<>();
-
 
         Student s1 = new Student("John", "Doe");
         Student s2 = new Student("Oscar", "de Leon");
@@ -53,14 +52,13 @@ public class AppTest {
 
         d.setStudents(students);
 
+        // Create a new student for thest
         Student newStudent = new Student("John", "Marston");
 
         // Call method
-
         d.addStudent(newStudent, 100);
 
         // Asert
-
         Assertions.assertEquals(4, students.size());
     }
 }
