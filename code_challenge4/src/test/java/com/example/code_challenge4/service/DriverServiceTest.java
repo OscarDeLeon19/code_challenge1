@@ -83,4 +83,53 @@ public class DriverServiceTest {
         Assertions.assertEquals(expected.get(1).getName(), result.get(1).getName());
 
     }
+
+    @Test
+    public void updateDriverSuccesfully(){
+        DriverRequest request = new DriverRequest("test name", 20);
+        Driver driver = new Driver(1, request.getName(), request.getAge());
+        Driver driverUpdate = new Driver(1, "update", request.getAge());
+
+        when(this.driverRepository.findById(driver.getId())).thenReturn(Optional.of(driver));
+        when(this.driverRepository.save(any(Driver.class))).thenReturn(driverUpdate);
+
+        DriverDto expected = new DriverDto(driverUpdate);
+
+        DriverDto result = this.driverService.updateDriver(driver.getName(), driver.getAge(), driver.getId());
+
+        Assertions.assertEquals(expected.getId(), result.getId());
+        Assertions.assertEquals(expected.getName(), result.getName());
+        Assertions.assertEquals(expected.getAge(), result.getAge());
+    }
+
+    @Test
+    public void updateDriverFails(){
+        DriverRequest request = new DriverRequest("test name", 20);
+        Driver driver = new Driver(1, request.getName(), request.getAge());
+
+        when(this.driverRepository.findById(driver.getId())).thenReturn(Optional.empty());
+
+        DriverDto result = this.driverService.updateDriver(driver.getName(), driver.getAge(), driver.getId());
+        Assertions.assertNull(result);
+    }
+
+    @Test
+    public void deleteDriverSucessfully(){
+        Driver driver = new Driver(1, "test", 20);
+
+        when(this.driverRepository.findById(driver.getId())).thenReturn(Optional.of(driver));
+
+        boolean isDeleted = this.driverService.deleteDriver(1);
+        Assertions.assertTrue(isDeleted);
+    }
+
+    @Test
+    public void deleteDriverFails(){
+        Driver driver = new Driver(1, "test", 20);
+
+        when(this.driverRepository.findById(driver.getId())).thenReturn(Optional.empty());
+
+        boolean isDeleted = this.driverService.deleteDriver(1);
+        Assertions.assertFalse(isDeleted);
+    }
 }

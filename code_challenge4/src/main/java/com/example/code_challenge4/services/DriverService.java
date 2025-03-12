@@ -45,6 +45,30 @@ public class DriverService {
             driverDtos.add(driverDto);
         }
         return driverDtos;
+    }
+
+    public DriverDto updateDriver(String name, Integer age, Integer id) {
+        Optional<Driver> optionalDriver = driverRepository.findById(id);
+        if (optionalDriver.isPresent()) {
+            Driver driver = optionalDriver.get();
+            driver.setAge(age);
+            driver.setName(name);
+            Driver savedDriver = driverRepository.save(driver);
+            return new DriverDto(savedDriver);
+        } else {
+            return null;
+        }
+    }
+
+    public boolean deleteDriver(Integer id) {
+        Optional<Driver> optionalDriver = driverRepository.findById(id);
+        if (optionalDriver.isPresent()) {
+            Driver driver = optionalDriver.get();
+            driverRepository.delete(driver);
+            return true;
+        } else{
+            return false;
+        }
 
 
     }

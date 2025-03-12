@@ -48,4 +48,31 @@ public class DriverController {
         List<DriverDto> drivers = this.driverService.findAll();
         return new ResponseEntity<>(drivers, HttpStatus.OK);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<HashMap<String, Object>> updateDriver(@PathVariable int id, @RequestBody DriverRequest driver) {
+        HashMap<String, Object> response = new HashMap<>();
+        DriverDto driverDto = this.driverService.updateDriver(driver.getName(), driver.getAge(), id);
+        if(driverDto == null) {
+            response.put("message", "El driver no existe");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        } else{
+            response.put("message", "El driver se ha actualizado.");
+            response.put("idDriver", driverDto.getId());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<HashMap<String, Object>> deleteDriver(@PathVariable int id) {
+        HashMap<String, Object> response = new HashMap<>();
+        boolean isDeleted = this.driverService.deleteDriver(id);
+        if(isDeleted) {
+            response.put("message", "El driver se ha eliminado.");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            response.put("message", "El driver no existe");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

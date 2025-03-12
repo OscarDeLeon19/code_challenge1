@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 
@@ -23,10 +24,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(DriverController.class)
 class DriverControllerTest {
 
-    @MockBean
+    @MockitoBean
     private DriverService driverService;
 
-    @MockBean
+    @MockitoBean
     private DriverRepository driverRepository;
 
     @Autowired
@@ -40,6 +41,6 @@ class DriverControllerTest {
 
         when(driverService.saveDriver(driverRequest.getName(), driverRequest.getAge())).thenReturn(driverDto);
 
-        mockMvc.perform(post("/api/v1/driver/save").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        mockMvc.perform(post("/driver/save").contentType(MediaType.APPLICATION_JSON).content("{ \"message\": \"El driver se ha registrado.\", \"idDriver\": 123 }")).andExpect(status().isOk());
     }
 }
