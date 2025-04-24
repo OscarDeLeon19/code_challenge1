@@ -1,0 +1,10 @@
+
+-- Justificación Patrones
+
+Para los platillos se pensó en el patron Builder, ya que queda acorde a las necesidades del programa. Es necesario crear platillos personalizados, y el patron Builder es especialista en esto, ya que nos ayuda a crea objetos paso por paso, facilitano el trabajo enormemente, en este caso de que tenemos objetos con varios atributos. 
+
+En la aplicación se tienen contemplados 3 platillos, pastas, hamburguesas y pizza, con este patron podemos generar los platos principales, acompañamientos y bebida de forma personalizada. Incluso, la pizza que generalmente no se sirve con acompañantes, puede tener esa personalización y entregar unicamente un plato principal y una bebida.
+
+En la parte de los descuentos, se utilizo el patron Strategy, este nos permite generar un algoritmo diferene para cada uno de los descuentos que necesitemos, en caso de clientes y de descuento por dia. Unicamente creando la interfaz necesaria e implementando sus metodos, podemos hacer que cada descuento tenga un algoritmo personalizado sin necesidad de utilizar if anidados o algunos otros algoritmos que sean más complejos.
+
+Por ultimo, la comunicación con cocina nos indica que recibe unicamente datos en formato XML, pero nuestro servicio de pedidos unicamente puede utilizar un JSON. Es aqui donde utilizamos el patron Adapter, creando una clase adaptador que convierte la informaion que viene desde la atención al cliente a un formato entendible para la cocina, siendo este un proceso externo, unicamente nos tenemos que preocupar porque el sistema mande los datos correctos y reciba lo solicitado. Nuestra clase adapter es nuestra comunicacón entre la atención al cliente y a la cocina.
