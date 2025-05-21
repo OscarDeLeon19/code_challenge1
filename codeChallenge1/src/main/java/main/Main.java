@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Nada");
         System.out.println("Ingresa la primera palabra: ");
         Scanner scanner = new Scanner(System.in);
         String palabra1 = "";
