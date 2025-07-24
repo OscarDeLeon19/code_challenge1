@@ -13,6 +13,7 @@ public class Main {
         String palabra1 = "";
         String palabra2 = "";
         palabra1 = scanner.nextLine();
+        String palabra3 = "";
 
         System.out.println("Ingresa la segunda palabra");
         palabra2 = scanner.nextLine();
